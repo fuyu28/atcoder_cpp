@@ -6,15 +6,11 @@ int main() {
     cin >> N >> X >> Y >> Z;
     bool answer = false;
 
-    if (X > Y) {
-        for (int i=Y;i<=X;i++) {
-            if(Z == i) answer = true;
-        }
+    if (X >= Z && Z >= Y) {
+        answer = true;
     }
-    else if (X < Y) {
-        for (int i=X;i<=Y;i++) {
-            if (Z == i) answer = true;
-        }
+    else if (X <= Z  && Z <= Y) {
+        answer = true;
     }
 
     if (answer == true) cout << "Yes" << endl;

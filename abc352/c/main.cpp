@@ -3,14 +3,17 @@ using namespace std;
 
 int main() {
     int N;
-    vector<int> A(N),B(N);
-    vector<vector<int>> C(N,vector<int>(2));
-    for (int i = 0; i < N; i++) cin >> A.at(i) >> B.at(i);
+    cin >> N;
+    vector<int> A(N),B(N),C(N);
+    long long answer = 0;
     for (int i = 0; i < N; i++) {
-        C.at(i).at(0) = B.at(i) - A.at(i);
-        C.at(i).at(1) = i;
+        cin >> A.at(i) >> B.at(i);
+        C.at(i) = B.at(i) - A.at(i);
+        answer += A.at(i);
     }
-    sort(C.begin(),C.end(),[](const vector<int> &alpha,const vector<int> &beta){return alpha[0] < beta[0];});
     
+    sort(C.begin(),C.end());
+    answer += C.at(N - 1);
+    cout << answer << endl;
     return 0;
 }
