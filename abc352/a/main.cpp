@@ -9,7 +9,7 @@ int main() {
     if (X >= Z && Z >= Y) {
         answer = true;
     }
-    else if (X <= Z  && Z <= Y) {
+    else if (X <= Z && Z <= Y) {
         answer = true;
     }
 
