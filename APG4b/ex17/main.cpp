@@ -14,4 +14,13 @@ int main() {
 
     // リンゴ・パイナップルをそれぞれ1つずつ購入するとき合計S円になるような買い方が何通りあるか
     // ここにプログラムを追記
+    int cnt = 0;
+    for (int i = 0; i < N; ++i) {
+        for (int j = 0; j < N; ++j) {
+            if (A.at(i) + P.at(j) == S) cnt++;
+        }
+    }
+
+    cout << cnt << endl;
+    return 0;
 }
