@@ -19,7 +19,7 @@ int main() {
     //出力
     for (int j = 1; j <= Q; ++j) {
         if (S.at(R.at(j)) - S.at(L.at(j) - 1) == 0) cout << "draw" << endl;
-        if (S.at(R.at(j)) - S.at(L.at(j) - 1) > ((R.at(j) - L.at(j) + 1) / 2 + 1))
+        //if (S.at(R.at(j)) - S.at(L.at(j) - 1) > ((R.at(j) - L.at(j) + 1) / 2 + 1))
     }
     return 0;
 }
