@@ -2,6 +2,17 @@
 using namespace std;
 
 int main() {
-    set<int> st{1,2,3,3,4,5,6,2,2,1,3};
-    cout << st.count(3) << endl;
+    string S;
+    cin >> S;
+
+    for (int i = 0; i < S.size();) {
+        int j = i;
+        while (j < S.size() && S.at(j) == S.at(i)) {
+            ++j;
+        }
+
+        cout << S.at(i) << " " << j - i << endl;
+        i = j;
+    }
+    return 0;
 }
