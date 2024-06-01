@@ -11,15 +11,16 @@ int main() {
     ll N;
     cin >> N;
 
-    vector<ll> bucket(10e9 + 1, 0);
-    vector<ll> A(N+1), C(N+1);
+    vector<int> bucket(10e9 + 1, 0);
+    vector<ll> A(N+1);
+    ll C;
     for (int i = 0; i < N; ++i) {
-        cin >> A.at(i) >> C.at(i);
-        bucket.at(A.at(i)) = C.at(i);
+        cin >> A.at(i) >> C;
+        bucket.at(A.at(i)) = C;
     }
 
     set<ll> ans_num;
-    ll costmin = 10e9+2;
+    ll costmin = INT_MAX;
     ll cnt = 0;
 
     for (ll i = 10e9; i > 0; --i) {
