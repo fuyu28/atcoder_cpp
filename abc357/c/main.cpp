@@ -5,26 +5,30 @@ using namespace std;
 #define sz(x) (int)(x).size()
 typedef long long ll;
 
-void level_grid(int length, int partition, vector<vector<char>>& grid) {
-    if (partition == 1) {
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if (i == 3 and j == 3) grid.at(i).at(j) = '.';
-                else grid.at(i).at(j) = '#';
-            }
+vector<vector<char>> G;
+
+void allwhite(int num, int x, int y) {
+    for (int i = x; i < x + pow(3, num-1); ++i) {
+        for (int j = y; j < y + pow(3, num-1); ++j) {
+            G.at(i).at(j) = '.';
         }
+    }
+}
+
+void f(int num, int x, int y) {
+    if (num == 0) {
+        G.at(x).at(y) = '#';
         return;
     }
-    for (int i = partition; i < partition * 2; ++i) {
-        for (int j = partition; j < partition * 2; ++j) {
-            grid.at(i).at(j) = '.';
+
+    for (int i = x; i < x+3; ++i) {
+        for (int j = y; j < y+3; ++j) {
+            if (i == x+1 && j == y+1) {
+                allwhite(num, x + pow(3, num-1), y + pow(3, num-1));
+            } else {
+                f(num-1, x + (i-x) * pow(3, num-1), y + (j-y) * pow(3, num-1));
+            }
         }
-    }
-        
-    for (int i = 0; i < 8; ++i) {
-        int next_length = length / 3;
-        int next_partition = partition / 3;
-        level_grid(next_length, next_partition, grid);
     }
 }
 
@@ -34,16 +38,15 @@ int main() {
     int N;
     cin >> N;
     int length = pow(3, N);
-    int partition = length / 3;
-    vector<vector<char>> grid(length, vector<char>(length));
+    G.assign(length, vector<char>(length));
+    f(N, 0, 0);
 
-    level_grid(length, partition, grid);
-
-    for (int i = 0; i < sz(grid); ++i) {
-        for (int j = 0; j < sz(grid); ++j) {
-            cout << grid.at(i).at(j);
+    for (int i = 0; i < pow(3, N); ++i) {
+        for (int j = 0; j < pow(3, N); ++j) {
+            cout << G.at(i).at(j);
         }
         cout << endl;
     }
+    
     return 0;
 }
