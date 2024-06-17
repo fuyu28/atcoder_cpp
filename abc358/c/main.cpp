@@ -12,13 +12,12 @@ int main() {
     cin >> N >> M;
     vector<string> S(N);
     for (auto& v : S) cin >> v;
-    vector<int> cnt(1<<N,INT_MAX);
-    int cnt_num = 0;
+    int min_cnt = INT_MAX;
 
-    for (int tmp = 1; tmp < (1<<N); ++tmp) {
+    for (int bit = 1; bit < (1<<N); ++bit) {
         vector<int> bucket(M+1, 0);
-        bitset<10> bs(tmp);
-        int bit_cnt = 0;
+        bitset<10> bs(bit);
+        int cnt = 0;
         for (int i = 0; i < N; ++i) {
             if (bs.test(i)) {
                 for (int j = 0; j < M; ++j) {
@@ -26,19 +25,15 @@ int main() {
                         ++bucket.at(j+1);
                     }
                 }
-                ++bit_cnt;
+                ++cnt;
             }
         }
         bool is_correct = true;
         for (int i = 1; i <= M; ++i) {
             if (bucket.at(i) == 0) is_correct = false;
         }
-        if (is_correct) {
-            cnt.at(cnt_num) = bit_cnt;
-            ++cnt_num;
-        }
+        if (is_correct) min_cnt = min(min_cnt, cnt);
     }
-    int min = *min_element(all(cnt));
-    cout << min << endl;
+    cout << min_cnt << endl;
     return 0;
 }
