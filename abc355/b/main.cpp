@@ -3,6 +3,7 @@ using namespace std;
 
 #define all(x) x.begin(), x.end()
 #define sz(x) (int)(x).size()
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
 typedef long long ll;
 
 int main() {
@@ -11,25 +12,21 @@ int main() {
     int N, M;
     cin >> N >> M;
     vector<int> A(N), B(M);
-    for (auto& v : A) cin >> v;
-    for (auto& v : B) cin >> v;
+    for (auto& x : A) cin >> x;
+    for (auto& x : B) cin >> x;
 
-    sort(all(A));
-    sort(all(B));
+    auto C = A;
+    for (auto x : B) C.push_back(x);
+    sort(all(C));
 
-    bool ans = false;
-    set<int> C;
-    int cnt = 0;
+    set<int> st(all(A));
 
-    for (int i : A) C.insert(i);
-    for (int i : B) C.insert(i);
-
-    for (int i = 0; i < N+M-1; ++i) {
-        if (A)
+    rep(i, N + M - 1) {
+        if (st.count(C.at(i)) && st.count(C.at(i+1))) {
+            cout << "Yes" << endl;
+            return 0;
+        }
     }
-
-    if (ans) cout << "Yes" << endl;
-    else cout << "No" << endl;
-
+    cout << "No" << endl;
     return 0;
 }
