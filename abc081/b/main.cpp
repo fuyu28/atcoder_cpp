@@ -1,28 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)(x).size()
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+typedef long long ll;
+
 int main() {
-    int N;
-    cin >> N;
-    vector<long long> A(N);
-    for (int i = 0; i < N; i++) cin >> A.at(i);
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     
-    int res = 0;
+    int n;
+    int cnt=0;
+    bool all_even = true;
+    cin >> n;
+    vector<ll> a(n);
+    rep(i,n) cin >> a[i];
 
     while (true) {
-        bool exist_odd = false;
-        for (int i = 0; i < N; i++) {
-            if (A.at(i) % 2 != 0) exist_odd = true;
+        for (int i : a) {
+            if (i % 2 == 1) {
+                all_even = false;
+                break;
+            }
         }
-
-        if (exist_odd) break;
-
-        for (int i = 0; i < N; i++) {
-            A.at(i) /= 2;
+        if (all_even) {
+            ++cnt;
+            rep(i,n) a[i] /= 2;
+        } else{
+            break;
         }
-        res++;
     }
-
-    cout << res << endl;
+    cout << cnt << endl;
     return 0;
 }
