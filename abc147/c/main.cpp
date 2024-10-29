@@ -41,7 +41,6 @@ int main() {
             }
         }
         if(ok) {
-            cout << honest.count() << endl;
             ans = max(ans, (int)honest.count());
         }
     }
