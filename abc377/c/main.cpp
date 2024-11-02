@@ -11,23 +11,29 @@ int main() {
 
     int n, m;
     cin >> n >> m;
-    vector<int> a(m), b(m);
-    rep(i, m) cin >> a[i] >> b[i];
-    int ans = n*n;
-    int bad = 0;
-
-    vector<int> toru{2, 1, -1, -2};
-
+    vector<pair<int, int>> ab(m);
     rep(i, m) {
-        rep(k, 4) {
-            rep(l, 4) {
-                if (0 <= a[i]+toru[k] && a[i]+toru[k] < n && 0 <= b[i]+toru[l] && b[i]+toru[l] < n && abs(toru[k]) != abs(toru[l])) {
-                    bad++;
+        cin >> ab[i].first >> ab[i].second;
+        ab[i].first--; ab[i].second--;
+    }
+    vector<vector<int>> search = {{2, 1}, {-2, 1}, {1, 2}, {-1, 2}};
+    set<pair<int, int>> is_place;
+    for(auto [a, b] : ab) {
+        is_place.insert({a, b});
+    }
+
+    for(auto [a, b] : ab) {
+        rep(i, 2) {
+            rep(j, 4) {
+            int x = a + search[j][0];
+            int y = b + (i ? -1 : 1) * search[j][1];
+                if(0 <= x && x < n && 0 <= y && y < n) {
+                    is_place.insert({x, y});
+                    //cout << "x: " << x << " y: " << y << endl;
                 }
             }
         }
     }
-
-    cout << ans-bad << endl;
+    cout << (ll)n*n - sz(is_place) << endl;
     return 0;
 }
