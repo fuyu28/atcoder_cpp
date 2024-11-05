@@ -24,17 +24,25 @@ oj login https://atcoder.jp
 
 <br>
 
+# 使用するコマンド
+## コンテストフォルダの作成
+```
+acc new (コンテスト名)
+```
+
+<br>
+
 # ショートカット
 ## Ctrl+Shift+M
 C++をg++でコンパイル（Warningなし）
 ```
-g++ -std=gnu++23 -Wall -Wextra -DLOCAL -Wno-expansion-to-defined -Wno-sign-compare -Wfloat-equal -Winit-self -Wshadow -Wlogical-op -Werror=uninitialized -Werror=maybe-uninitialized -Werror=parentheses -Werror=logical-not-parentheses -Werror=multichar -Wno-unknown-pragmas -g -fsanitize=undefined -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC' main.cpp
+g++ -std=gnu++23 -O2 -mtune=native -march=native main.cpp
 ```
 
 ## Ctrl+Shift+W
 C++をg++でコンパイル (Warningなどを目一杯使用，低速)
 ```
-g++ -std=gnu++23 -O2 -mtune=native -march=native main.cpp
+g++ -std=gnu++23 -Wall -Wextra -DLOCAL -Wno-expansion-to-defined -Wno-sign-compare -Wfloat-equal -Winit-self -Wshadow -Wlogical-op -Werror=uninitialized -Werror=maybe-uninitialized -Werror=parentheses -Werror=logical-not-parentheses -Werror=multichar -Wno-unknown-pragmas -g -fsanitize=undefined -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC' main.cpp
 ```
 
 ## Ctrl+Shift+T
