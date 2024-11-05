@@ -6,6 +6,20 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 typedef long long ll;
 
+bool isOK(int index, ll k , vector<ll> x) {
+    return x[index] <= k;
+}
+
+int binary_search(int right, int left, ll k, vector<ll> x) {
+    int ok = right, ng = left;
+    while(abs(ok - ng) > 1) {
+        int mid = (ok + ng) / 2;
+        if (isOK(mid, k, x)) ok = mid;
+        else ng = mid;
+    }
+    return ok;
+}
+
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
@@ -23,14 +37,9 @@ int main() {
     rep(i, n+1) {
         ll time_a = sum_a[i], time_b = k - time_a;
         if(time_b < 0) continue;
-        int ok = 0, ng = m+1;
-        while(abs(ok - ng) > 1) {
-            int mid = (ok + ng) / 2;
-            if (sum_b[mid] <= time_b) ok = mid;
-            else ng = mid;
-        }
+        int read_b = binary_search(0, m+1, time_b, sum_b);
         //cout << " read_a: " << i << " read_b: " << read_b << endl;
-        ans = max(ans, i + ok);
+        ans = max(ans, i + read_b);
     }
     cout << ans << endl;
     return 0;
