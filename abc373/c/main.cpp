@@ -15,11 +15,8 @@ int main() {
     rep(i, N) cin >> A[i];
     rep(i, N) cin >> B[i];
 
-    int A_max = 0, B_max = 0;
-    rep(i, N) {
-        A_max = max(A_max, A[i]);
-        B_max = max(B_max, B[i]);
-    }
+    sort(all(A)), sort(all(B));
+    ll A_max = A[N-1], B_max = B[N-1];
     cout << A_max + B_max << endl;
     return 0;
 }
