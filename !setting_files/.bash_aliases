@@ -1,8 +1,0 @@
-alias reload='exec $SHELL -l'
-alias g++='g++ -std=gnu++23 -Wall -Wextra -DLOCAL -Wno-expansion-to-defined -Wno-sign-compare -Wfloat-equal -Winit-self -Wshadow -Wlogical-op -Werror=uninitialized -Werror=maybe-uninitialized -Werror=parentheses -Werror=logical-not-parentheses -Werror=multichar -Wno-unknown-pragmas -g -fsanitize=undefined -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC'
-alias g++o='g++ -std=gnu++23 -O2 -mtune=native -march=native'
-alias acci='acc -c inquire'
-alias accp='acc --template py'
-alias accpi='acc --template py -c inquire'
-alias acc++='acc --template c++'
-alias acc++i='acc --template c++ -c inquire'
