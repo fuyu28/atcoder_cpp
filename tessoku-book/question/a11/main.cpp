@@ -2,29 +2,30 @@
 using namespace std;
 
 #define all(x) x.begin(), x.end()
-#define sz(x) (int)(x).size()
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
-typedef long long ll;
-
-int N, X, A[100000];
-
-int search(int x) {
-    int L = 1, R = N;
-    while(L <= R) {
-        int M = (L + R) / 2;
-        if (x < A.at(M)) R = M - 1;
-        if (x == A.at(M)) return M;
-        if (x > A.at(M)) L = M + 1;
-    }
-}
+#define sz(x) (lint)(x).size()
+#define rep(i, x, limit) for (lint i = (lint)x; i < (lint)limit; i++)
+#define REP(i, x, limit) for (lint i = (lint)x; i <= (lint)limit; i++)
+using lint = long long;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+using pll = pair<lint, lint>;
+const int dy[4] = {-1,0,1,0};
+const int dx[4] = {0,1,0,-1};
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     
-    cin >> N >> X;
-    rep(i, N) cin >> A.at(i);
+    lint n, x;
+    vector<lint> a(100009);
+    cin >> n >> x;
+    rep(i, 0, n) cin >> a[i];
 
-    int Answer = search(X);
-    cout << Answer << endl;
+    lint ok = 0, ng = n;
+    while (abs(ok-ng) > 1) {
+        lint mid = (ok+ng) / 2;
+        if (a[mid] <= x) ok = mid;
+        else ng = mid;
+    }
+    cout << ok+1 << endl;
     return 0;
 }

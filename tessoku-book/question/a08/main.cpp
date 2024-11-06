@@ -1,36 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int H, W, Q;
-    vector<vector<int>> X(1509, vector<int>(1509)), Z(1509, vector<int>(1509));
-    vector<int> A(100009), B(100009), C(100009), D(100009);
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)(x).size()
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define rep1(i, n) for (int i = 1; i <= (int)(n); i++)
+typedef long long ll;
 
-    //入力
-    cin >> H >> W;
-    for (int i = 1; i <= H; ++i) {
-        for (int j = 1; j <= W; ++j) {
-            cin >> X.at(i).at(j);
-            Z.at(i).at(j) = 0;
+int main() {
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    
+    int h, w, q;
+    cin >> h >> w;
+    vector<vector<int>> x(h+1, vector<int>(w+1));
+    rep1(i, h) rep1(j, w) cin >> x[i][j];
+    cin >> q;
+    vector<int> a(q), b(q), c(q), d(q);
+    rep(i, q) cin >> a[i] >> b[i] >> c[i] >> d[i];
+    vector<vector<int>> cum(h+1, vector<int>(w+1, 0));
+    rep1(i, h) {
+        rep1(j, w) {
+            cum[i][j] = cum[i][j-1] + x[i][j];
         }
     }
-    cin >> Q;
-    for (int i = 1; i <= Q; ++i) cin >> A.at(i) >> B.at(i) >> C.at(i) >> D.at(i);
-
-    //横方向の累積和の計算
-    for (int i = 1; i <= H; ++i) {
-        for (int j = 1; j <= W; ++j) Z.at(i).at(j) = Z.at(i).at(j - 1) + X.at(i).at(j);
+    rep1(j, w) {
+        rep1(i, h) {
+            cum[i][j] = cum[i-1][j] + cum[i][j];
+        }
     }
 
-    //縦方向の累積和の計算
-    for (int i = 1; i <= H; ++i) {
-        for (int j = 1; j <= W; ++j) Z.at(i).at(j) += Z.at(i - 1).at(j); 
+    rep(i, q) {
+        int ans = cum[c[i]][d[i]] + cum[a[i]-1][b[i]-1] - cum[a[i]-1][d[i]] - cum[c[i]][b[i]-1];
+        cout << ans << endl;
     }
-
-    //出力
-    for (int i = 1; i <= Q; ++i) {
-        cout << Z.at(C.at(i)).at(D.at(i)) + Z.at(A.at(i) - 1).at(B.at(i) - 1) - Z.at(A.at(i) - 1).at(D.at(i)) - Z.at(C.at(i)).at(B.at(i) - 1) << endl;
-    }
-    
     return 0;
 }
