@@ -24,15 +24,19 @@ oj login https://atcoder.jp
 
 <br>
 
-# 使用するコマンド
-## コンテストフォルダの作成
-```
-acc new (コンテスト名)
-```
-
-<br>
-
 # ショートカット
+## Ctrl+Shift+F
+コンテストフォルダを作成
+```
+acc new ${input:1}
+```
+
+## Ctrl+Shift+O
+コンテストサイトを開く
+```
+xdg-open https://atcoder.jp/contests/${input:1}
+```
+
 ## Ctrl+Shift+M
 C++をg++でコンパイル（Warningなし）
 ```
