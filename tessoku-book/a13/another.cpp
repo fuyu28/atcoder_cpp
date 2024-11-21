@@ -16,11 +16,16 @@ struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 int main() {
     lint n, k;
     cin >> n >> k;
-    vector<lint> a(n), b(n), c(n), d(n);
+    vector<lint> a(n);
     rep(i, 0, n) cin >> a[i];
-    rep(i, 0, n) cin >> b[i];
-    rep(i, 0, n) cin >> c[i];
-    rep(i, 0, n) cin >> d[i];
-    
+    sort(all(a));
+
+    lint ans = 0;
+    rep(i, 0, n) {
+        lint idx = upper_bound(all(a), a[i] + k) - begin(a) - 1;
+        // if(idx < n) cout << "index=" << idx << ", num=" << a[idx] << endl;
+        ans += idx - i;
+    }
+    cout << ans << endl;
     return 0;
 }
