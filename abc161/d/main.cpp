@@ -14,15 +14,19 @@ const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
-    lint n;
-    cin >> n;
-    auto rf = [&](auto f, lint k)->string {
-        if (k == 1) return "1 ";
-        else {
-            auto bS = f(f, k-1);
-            return bS + to_string(k) + " " + bS;
+    lint k;
+    cin >> k;
+    auto rec = [&](auto f, lint d, lint val, vector<lint>& lunlun)->void {
+        lunlun.push_back(val);
+        if (d == 10) return;
+        REP(i, -1, 1) {
+            lint add = val % 10 + i;
+            if (0 <= add && add <= 9) f(f, d+1, val*10+add, lunlun);
         }
     };
-    cout << rf(rf, n) << endl;
+    vector<lint> lunlun;
+    rep(i, 1, 10) rec(rec, 1, i, lunlun);
+    sort(all(lunlun));
+    cout << lunlun[k-1] << endl;
     return 0;
 }
