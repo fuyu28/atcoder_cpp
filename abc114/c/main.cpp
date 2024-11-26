@@ -16,13 +16,15 @@ struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 int main() {
     lint n;
     cin >> n;
-    auto rf = [&](auto f, lint k)->string {
-        if (k == 1) return "1 ";
-        else {
-            auto bS = f(f, k-1);
-            return bS + to_string(k) + " " + bS;
-        }
+    lint cnt = 0;
+    auto rec = [&](auto f, lint num, lint n3, lint n5, lint n7, lint &cnt)-> void{
+        if (num > n) return;
+        if (n3 && n5 && n7) cnt++;
+        f(f, num*10+3, n3++, n5, n7, cnt);
+        f(f, num*10+5, n3, n5++, n7, cnt);
+        f(f, num*10+7, n3, n5, n7++, cnt);
     };
-    cout << rf(rf, n) << endl;
+
+    // cout << ans << endl;
     return 0;
 }
