@@ -14,22 +14,20 @@ const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
-    lint n, w;
-    cin >> n >> w;
-    vector<lint> a(n);
-    rep(i, 0, n) cin >> a[i];
-    a.push_back(0), a.push_back(0);
-    set<lint> s;
-
-    rep(i, 0, sz(a)) {
-        rep(j, 0, i) {
-            rep(k, 0, j) {
-                lint sum = a[i] + a[j] + a[k];
-                if (sum <= w) s.insert(sum);
-            }
-        }
+    lint n;
+    cin >> n;
+    map<string, lint> s;
+    rep(i, 0, n) {
+        string str;
+        cin >> str;
+        s[str]++;
     }
-
-    cout << sz(s) << '\n';
+    lint cnt_max = 0;
+    for (auto x : s) {
+        cnt_max = max(cnt_max, x.second);
+    }
+    for (auto x : s) {
+        if (x.second == cnt_max) cout << x.first << endl;
+    }
     return 0;
 }
