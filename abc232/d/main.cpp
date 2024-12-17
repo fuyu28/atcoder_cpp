@@ -7,29 +7,23 @@ using namespace std;
 #define REP(i, x, y) for (lint i = (lint)x; i <= (lint)y; i++)
 using lint = long long;
 using ulint = unsigned long long;
-using pii = pair<int, int>;
 using pll = pair<lint, lint>;
+using Graph = vector<vector<lint>>;
 const int dy[4] = {-1,0,1,0};
 const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
-    lint n, w;
-    cin >> n >> w;
-    vector<lint> a(n);
-    rep(i, 0, n) cin >> a[i];
-    a.push_back(0), a.push_back(0);
-    set<lint> s;
+    lint h,w;
+    cin >> h >> w;
+    lint n = h*w;
+    vector<string> field(h);
+    rep(i, 0, h) cin >> field[i];
+    lint sx = 0, sy = 0;
 
-    rep(i, 0, sz(a)) {
-        rep(j, 0, i) {
-            rep(k, 0, j) {
-                lint sum = a[i] + a[j] + a[k];
-                if (sum <= w) s.insert(sum);
-            }
-        }
-    }
+    Graph dist(h, vector<lint>(w, -1));
+    dist[sx][sy] = 0;
 
-    cout << sz(s) << '\n';
+
     return 0;
 }

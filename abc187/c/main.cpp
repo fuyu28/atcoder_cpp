@@ -14,22 +14,24 @@ const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
-    lint n, w;
-    cin >> n >> w;
-    vector<lint> a(n);
-    rep(i, 0, n) cin >> a[i];
-    a.push_back(0), a.push_back(0);
-    set<lint> s;
+    lint n;
+    cin >> n;
+    vector<string> s(n);
+    set<string> s_set;
+    rep(i, 0, n) {
+        cin >> s[i];
+        s_set.insert(s[i]);
+    }
+    string ans = "satisfiable";
 
-    rep(i, 0, sz(a)) {
-        rep(j, 0, i) {
-            rep(k, 0, j) {
-                lint sum = a[i] + a[j] + a[k];
-                if (sum <= w) s.insert(sum);
-            }
+    for (auto str : s) {
+        string origin = str;
+        if (s[0] == "!") origin = str.substr(1);
+        if (s_set.count("!" + origin) && s_set.count(origin)) {
+            ans = origin;
+            break;
         }
     }
-
-    cout << sz(s) << '\n';
+    cout << ans << endl;
     return 0;
 }
