@@ -19,13 +19,23 @@ int main() {
     vector<lint> h(n);
     rep(i, 0, n) cin >> h[i];
 
-    lint height = 0, streak = 0;
-    lint ans = 0;
-    rep(i, 0, n) {
-        if (height != h[i]) {
-            streak = 0;
-            height = h[i];
+    lint maxAns = 0;
+    REP(k, 1, n) { // distance 1 to n
+        lint currentMax = 0;
+        rep(start, 0, k) { // 各グループの開始位置
+            lint height = 0, current = 0, groupMax = 0;
+            for (lint i = start; i < n; i += k) { // check
+                if (h[i] != height) {
+                    current = 0;
+                    height = h[i];
+                }
+                current++;
+                groupMax = max(groupMax, current);
+            }
+            currentMax = max(currentMax, groupMax);
         }
-        ans = max(ans, streak);
+        maxAns = max(maxAns, currentMax);
     }
+
+    cout << maxAns << endl;
 }
