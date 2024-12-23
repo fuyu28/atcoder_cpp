@@ -9,8 +9,6 @@ using lint = long long;
 using ulint = unsigned long long;
 using pll = pair<lint, lint>;
 using Graph = vector<vector<lint>>;
-const int dy[4] = {-1,0,1,0};
-const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
@@ -19,6 +17,8 @@ int main() {
     vector<string> field(h);
     rep(i, 0, h) cin >> field[i];
     lint sx = 0, sy = 0;
+    vector<lint> dx = {0, 1};
+    vector<lint> dy = {1, 0};
 
     Graph dist(h, vector<lint>(w, -1));
     dist[sx][sy] = 0;
