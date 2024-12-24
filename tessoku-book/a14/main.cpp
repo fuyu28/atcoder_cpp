@@ -21,6 +21,26 @@ int main() {
     rep(i, 0, n) cin >> b[i];
     rep(i, 0, n) cin >> c[i];
     rep(i, 0, n) cin >> d[i];
+    vector<lint> p(n*n), q(n*n);
     
-    return 0;
+    rep(i, 0, n) {
+        rep(j, 0, n) {
+            p[i*n+j] = a[i] + b[j];
+        }
+    }
+    rep(i, 0, n) {
+        rep(j, 0, n) {
+            q[i*n+j] = c[i] + d[j];
+        }
+    }
+    sort(all(q));
+
+    rep(i, 0, n*n) {
+        lint pos1 = lower_bound(all(q), k-p[i]) - q.begin();
+        if (pos1 <= n*n && q[pos1] == k-p[i]) {
+            cout << "Yes" << endl;
+            return 0;
+        }
+    }
+    cout << "No" << endl;
 }
