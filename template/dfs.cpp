@@ -23,14 +23,15 @@ int main() {
         a--, b--;
         G[a].push_back(b);
     }
+    vector<bool> seen(n, false);
 
-    auto dfs = [&](auto f, const Graph &G, vector<bool> &seen, lint v)->void {
+    auto dfs = [&](auto f, lint v)->void {
         seen[v] = true;
         for (auto nv : G[v]) {
             if (seen[nv]) continue;
-            f(f, G, seen, nv);
+            f(f, nv);
         }
     };
     vector<bool> seen(n, false);
-    dfs(dfs, G, seen, 0);
+    dfs(dfs, 0);
 }
