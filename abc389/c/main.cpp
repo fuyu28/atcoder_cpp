@@ -16,25 +16,23 @@ struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 int main() {
     lint q;
     cin >> q;
-    deque<lint> snake;
-    snake.push_back(0);
-    lint sub = 0;
+    vector<lint> snake;
+    lint cur = 0, head = 0;
     rep(i, 0, q) {
-        lint type, x;
-        cin >> type;
-        if (type == 1) {
-            cin >> x;
-            x += snake.back();
-            snake.push_back(x);
-        } else if (type == 2) {
-            snake.pop_front(); // 0をとる
-            sub = snake.front(); // 先頭を取る
-            snake.pop_front();
-            snake.push_front(0); // 0を追加
+        lint t;
+        cin >> t;
+        if (t == 1) {
+            lint l;
+            cin >> l;
+            snake.push_back(cur);
+            cur += l;
+        } else if (t == 2) {
+            head++;
         } else {
-            cin >> x;
-            x--;
-            cout << snake[x] - sub << endl;
+            lint k;
+            cin >> k;
+            k--;
+            cout << snake[head + k] - snake[head] << '\n';
         }
     }
     return 0;
