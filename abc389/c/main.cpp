@@ -32,7 +32,8 @@ int main() {
             lint k;
             cin >> k;
             k--;
-            cout << snake[head + k] - snake[head] << '\n';
+            if (snake[head + k] - snake[head] < 0) cout << 0 << '\n';
+            else cout << snake[head + k] - snake[head] << '\n';
         }
     }
     return 0;
