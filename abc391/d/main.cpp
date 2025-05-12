@@ -14,6 +14,20 @@ const int dx[4] = {0,1,0,-1};
 struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 int main() {
-    
+    lint n, w;
+    cin >> n >> w;
+    static vector<string> block(w);
+    rep(i, 0, n) {
+        cin >> block[i];
+    }
+
+    lint q;
+    cin >> q;
+    vector<lint> queries(q);
+    rep(i, 0, q) {
+        cin >> queries[i];
+    }
+
+
     return 0;
 }

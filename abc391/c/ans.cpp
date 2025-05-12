@@ -16,9 +16,12 @@ struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 int main() {
     lint n, q;
     cin >> n >> q;
-    set<pll> nest; // first: name, second: position
+    vector<lint> cnt(n+1, 1);
+    vector<lint> pos(n+1, 0);
+    lint ans = 0;
+    cnt[0] = 0;
     rep(i, 0, n) {
-        nest.insert({i+1, i+1});
+        pos[i+1] = i+1;
     }
 
     rep(i, 0, q) {
@@ -27,23 +30,17 @@ int main() {
         if (query == 1) {
             lint p, h;
             cin >> p >> h;
-            auto it = nest.lower_bound({p, 0});
-            if (it != nest.end() && it->first == p) {
-                nest.erase(it);
+            if (cnt[pos[p]] == 2) {
+                ans -= 1;
             }
-            nest.insert({p, h});
+            cnt[pos[p]] -= 1;
+            pos[p] = h;
+            cnt[pos[p]] += 1;
+            if (cnt[pos[p]] == 2) {
+                ans += 1;
+            }
         } else if (query == 2) {
-            vector<lint> bucket(n+1, 0);
-            lint cnt = 0;
-            for (auto [l, r] : nest) {
-                bucket[r]++;
-            }
-            for (auto x : bucket) {
-                if (x > 1) {
-                    cnt++;
-                }
-            }
-            cout << cnt << '\n';
+            cout << ans << '\n';
         }
     }
     return 0;
