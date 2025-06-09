@@ -40,11 +40,11 @@ int main() {
     if (t == 1) { // クエリが1
       lint x;
       cin >> x;
-      if (ux[x]) cout << 0 << "\n"; // その行を見たか
-      else { // まだ見てない行
+      if (ux[x]) cout << 0 << "\n"; // 二回目以降
+      else { // 最初にクエリが来た時に全部見る
         lint ans = 0;
         for (int e: a[x]) { // ゴミのxについて見る
-          if (!used[e]) { // 見てないゴミを数える
+          if (!used[e]) { // 見てないゴミだけを数える
             used[e] = true; 
             ans++;
           }
