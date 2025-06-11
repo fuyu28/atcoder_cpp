@@ -42,19 +42,19 @@ template<typename T1, typename T2> inline bool chmin(T1 &a, T2 b) {
 int main() {
     lint n;
     cin >> n;
-    vector<lint> a(n+1);
-    REP(i,1,n) cin >> a[i];
+    vector<lint> a(n+1), b(n+1);
+    vector<lint> dp(n+1, INF);
+    REP(i,2,n) cin >> a[i];
+    REP(i,3,n) cin >> b[i];
 
-    lint LEN = 0;
-    vector<lint> dp(n+1), l(n+1);
+    dp[1] = 0;
     REP(i,1,n) {
-        auto l_start = l.begin();
-        lint pos = lower_bound(l_start + 1, l_start + LEN + 1, a[i]) - l_start;
-        dp[i] = pos;
-
-        l[dp[i]] = a[i];
-        if (dp[i] > LEN) LEN += 1;
+        if (i+1 <= n) {
+            chmin(dp[i+1], dp[i] + a[i+1]);
+        }
+        if (i+2 <= n) {
+            chmin(dp[i+2], dp[i] + b[i+2]);
+        }
     }
-
-    cout << LEN << el;
+    cout << dp[n] << el;
 }
