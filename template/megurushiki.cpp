@@ -15,11 +15,11 @@ struct Init { Init() { ios::sync_with_stdio(0); cin.tie(0); } }init;
 
 vector<lint> a = {1, 14, 32, 51, 51, 51, 243, 419, 750, 910};
 
-lint binary_serch(lint key) {
+lint binary_search(lint key) {
     lint ng = -1; // 常に偽
-    lint ok = (lint)sz(a); // 常に真
+    lint ok = ssize(a); // 常に真
     while(abs(ok-ng) > 1) {
-        lint mid = (ok+ng) / 2;
+        lint mid = (ok + ng) / 2;
         if (a[mid] >= key) ok = mid;
         else ng = mid;
     }
@@ -27,5 +27,5 @@ lint binary_serch(lint key) {
 }
 
 int main() {
-    cout << binary_serch(51) << endl;
+    cout << binary_search(51) << endl;
 }

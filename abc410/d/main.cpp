@@ -40,18 +40,39 @@ template<typename T1, typename T2> inline bool chmin(T1 &a, T2 b) {
 }
 
 int main() {
-  string s;
-  cin >> s;
+    lint n, m;
+    cin >> n >> m;
+    vector<vector<pll>> graph(n+1);
 
-  lint sum = 0;
-  lint n = ssize(s);
-  for (lint i=n-1; i>=0; i--) {
-    lint dist_0 = s[i] - '0';
-    lint dist_pre = ((i < n-1) ? (s[i+1] - '0') : 0);
-    lint b = (10 + dist_0 - dist_pre) % 10;
-    sum += b;
-  }
+    rep(i,0,m) {
+        lint a, b, w;
+        cin >> a >> b >> w;
+        graph[a].push_back(make_pair(b,w));
+    }
+    vector<lint> walk(n+1, -1);
+    vector<bool> visited(n+1, false);
+    queue<lint> q;
 
-  lint a = n;
-  cout << a + sum << el;
+    q.push(1);
+    visited[1] = true;
+    bool is_first = true;
+
+    while (!q.empty()) {
+        lint pos = q.front(); q.pop();
+        if (is_first) {
+            walk[pos] = 0;
+            is_first = false;
+        }
+        for (auto g_pos: graph[pos]) {
+            lint to = g_pos.first;
+            if (visited[to] == false) {
+                walk[to] = walk[pos] ^ g_pos.second;
+                cout << pos << spa << to << spa << walk[to] << el;
+                q.push(to);
+                visited[to] = true;
+            }
+        }
+    }
+
+    cout << walk[n] << el;
 }

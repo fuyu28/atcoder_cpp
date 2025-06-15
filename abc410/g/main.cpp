@@ -40,18 +40,5 @@ template<typename T1, typename T2> inline bool chmin(T1 &a, T2 b) {
 }
 
 int main() {
-  string s;
-  cin >> s;
 
-  lint sum = 0;
-  lint n = ssize(s);
-  for (lint i=n-1; i>=0; i--) {
-    lint dist_0 = s[i] - '0';
-    lint dist_pre = ((i < n-1) ? (s[i+1] - '0') : 0);
-    lint b = (10 + dist_0 - dist_pre) % 10;
-    sum += b;
-  }
-
-  lint a = n;
-  cout << a + sum << el;
 }

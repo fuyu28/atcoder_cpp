@@ -40,18 +40,30 @@ template<typename T1, typename T2> inline bool chmin(T1 &a, T2 b) {
 }
 
 int main() {
-  string s;
-  cin >> s;
+    lint n, q;
+    cin >> n >> q;
 
-  lint sum = 0;
-  lint n = ssize(s);
-  for (lint i=n-1; i>=0; i--) {
-    lint dist_0 = s[i] - '0';
-    lint dist_pre = ((i < n-1) ? (s[i+1] - '0') : 0);
-    lint b = (10 + dist_0 - dist_pre) % 10;
-    sum += b;
-  }
+    vector<lint> a(n+1);
+    REP(i,0,n) a[i] = i;
 
-  lint a = n;
-  cout << a + sum << el;
+    lint zurasu = 0;
+    rep(i,0,q) {
+        lint query;
+        cin >> query;
+        if (query == 1) {
+            lint p, x;
+            cin >> p >> x;
+            a[p] = x;
+        } else if (query == 2) {
+            lint p;
+            cin >> p;
+            lint idx = p + zurasu;
+            if (idx > n) idx %= n;
+            cout << a[idx] << el;
+        } else {
+            lint p;
+            cin >> p;
+            zurasu = (zurasu + p) % n;
+        }
+    }
 }

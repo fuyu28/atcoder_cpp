@@ -40,18 +40,36 @@ template<typename T1, typename T2> inline bool chmin(T1 &a, T2 b) {
 }
 
 int main() {
-  string s;
-  cin >> s;
+    lint n, q;
+    cin >> n >> q;
+    vector<lint> x(q);
+    rep(i,0,q) cin >> x[i];
 
-  lint sum = 0;
-  lint n = ssize(s);
-  for (lint i=n-1; i>=0; i--) {
-    lint dist_0 = s[i] - '0';
-    lint dist_pre = ((i < n-1) ? (s[i+1] - '0') : 0);
-    lint b = (10 + dist_0 - dist_pre) % 10;
-    sum += b;
-  }
+    vector<lint> box(n+1, 0);
+    box[0] = INF;
+    vector<lint> ball;
 
-  lint a = n;
-  cout << a + sum << el;
+    rep(i,0,q) {
+        if (x[i] == 0) {
+            lint min = INF, min_idx;
+            rep(i,0,n+1) {
+                chmin(min, box[i]);
+            }
+            rep(i,0,n+1) {
+                if (box[i] == min) {
+                    min_idx = i;
+                    break;
+                }
+            }
+            ball.push_back(min_idx);
+            box[min_idx]++;
+        }
+        else {
+            ball.push_back(x[i]);
+            box[x[i]]++;
+        }
+    }
+
+    rep(i,0,q) cout << ball[i] << spa;
+    cout << el;
 }
